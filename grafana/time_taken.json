@@ -534,6 +534,120 @@
           "version": "13.0.2"
         }
       }
+    },
+    "panel-6": {
+      "kind": "Panel",
+      "spec": {
+        "data": {
+          "kind": "QueryGroup",
+          "spec": {
+            "queries": [
+              {
+                "kind": "PanelQuery",
+                "spec": {
+                  "hidden": false,
+                  "query": {
+                    "datasource": {
+                      "name": "afpyrp1z6fcowb"
+                    },
+                    "group": "frser-sqlite-datasource",
+                    "kind": "DataQuery",
+                    "spec": {
+                      "queryText": "SELECT\n'Triaging Agent' AS Agent,\nROUND(AVG(triage_time),2) AS Time\nFROM incidents\n\nUNION ALL\n\nSELECT\n'Investigation Agent',\nROUND(AVG(investigation_time),2)\nFROM incidents\n\nUNION ALL\n\nSELECT\n'Response Agent',\nROUND(AVG(response_time),2)\nFROM incidents;",
+                      "queryType": "table",
+                      "rawQueryText": "SELECT\n'Triaging Agent' AS Agent,\nROUND(AVG(triage_time),2) AS Time\nFROM incidents\n\nUNION ALL\n\nSELECT\n'Investigation Agent',\nROUND(AVG(investigation_time),2)\nFROM incidents\n\nUNION ALL\n\nSELECT\n'Response Agent',\nROUND(AVG(response_time),2)\nFROM incidents;",
+                      "timeColumns": [
+                        "time",
+                        "ts"
+                      ]
+                    },
+                    "version": "v0"
+                  },
+                  "refId": "A"
+                }
+              }
+            ],
+            "queryOptions": {},
+            "transformations": []
+          }
+        },
+        "description": "",
+        "id": 6,
+        "links": [],
+        "title": "average agent time",
+        "vizConfig": {
+          "group": "barchart",
+          "kind": "VizConfig",
+          "spec": {
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "fixedColor": "#00ab9b",
+                  "mode": "shades"
+                },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "fillOpacity": 80,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineWidth": 1,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": 0
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "options": {
+              "barRadius": 0,
+              "barWidth": 0.97,
+              "fullHighlight": false,
+              "groupWidth": 0.7,
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "right",
+                "showLegend": true
+              },
+              "orientation": "horizontal",
+              "showValue": "never",
+              "stacking": "none",
+              "tooltip": {
+                "hideZeros": false,
+                "mode": "single",
+                "sort": "none"
+              },
+              "xTickLabelRotation": 0,
+              "xTickLabelSpacing": 0
+            }
+          },
+          "version": "13.0.2"
+        }
+      }
     }
   },
   "layout": {
@@ -558,7 +672,7 @@
           "spec": {
             "element": {
               "kind": "ElementReference",
-              "name": "panel-2"
+              "name": "panel-6"
             },
             "height": 8,
             "width": 12,
@@ -571,7 +685,7 @@
           "spec": {
             "element": {
               "kind": "ElementReference",
-              "name": "panel-3"
+              "name": "panel-2"
             },
             "height": 8,
             "width": 12,
@@ -597,11 +711,24 @@
           "spec": {
             "element": {
               "kind": "ElementReference",
-              "name": "panel-5"
+              "name": "panel-3"
             },
             "height": 8,
             "width": 12,
             "x": 0,
+            "y": 16
+          }
+        },
+        {
+          "kind": "GridLayoutItem",
+          "spec": {
+            "element": {
+              "kind": "ElementReference",
+              "name": "panel-5"
+            },
+            "height": 8,
+            "width": 12,
+            "x": 12,
             "y": 16
           }
         }
