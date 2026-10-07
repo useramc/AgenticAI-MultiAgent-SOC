@@ -7,7 +7,7 @@ from database.db_setup import fetch_all_incidents,fetch_incident
 import re
 
 load_dotenv()
-llm=ChatGroq(model="llama-3.3-70b-versatile",api_key=os.getenv("GROQ_API_KEY"))
+llm=ChatGroq(model="openai/gpt-oss-120b",api_key=os.getenv("GROQ_API_KEY"))
 
 def get_incident_context(question:str)->str:
     id_match=re.search(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}',question,re.IGNORECASE)
@@ -17,7 +17,7 @@ def get_incident_context(question:str)->str:
         return str(incident)
     else:
         incidents=fetch_all_incidents()
-        return str(incidents)
+        return str(incidents[-10:]) 
 
 def answer_question(question:str)->str:
     context=get_incident_context(question)
